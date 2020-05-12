@@ -28,7 +28,7 @@ class PlaylistPoster(appContext: Context, workerParams: WorkerParameters)
                 Result.failure()
             }
             val body = PlaylistName(inputData.getString("name")!!)
-            val call2 = retrofitService.createPlaylist(user_id, access_token, content_type, body)
+            val call2 = retrofitService.createPlaylist(user_id, access_token, content_type, CreatePlaylistBody(inputData.getString("name")!!, inputData.getBoolean("public", false)))
             val result2 = call2.execute()
             var playlist_id = ""
             var uri = ""
@@ -48,11 +48,19 @@ class PlaylistPoster(appContext: Context, workerParams: WorkerParameters)
             val call3 = retrofitService.addTrack(playlist_id, access_token, content_type, body2)
             val result3 = call3.execute()
             if (result3.isSuccessful) {
-                Result.success(workDataOf("name" to inputData.getString("name"), "uri" to uri, "external_url" to (external_urls?.get("spotify"))))
+                //Result.success(workDataOf("name" to inputData.getString("name"), "uri" to uri, "external_url" to (external_urls?.get("spotify"))))
             } else {
                 Log.d("Error","third call failed")
                 Result.failure()
             }
+
+            val request = retrofitService.getCover(playlist_id, access_token)
+            val res = request.await()
+            Log.d("result", res.toString())
+            Result.success(workDataOf("name" to inputData.getString("name"), "uri" to uri,
+                "external_url" to (external_urls?.get("spotify")), "cover" to res[0].url))
+
+
         } catch (error: Throwable) {
             Log.d("Error",error.toString())
             Result.failure()

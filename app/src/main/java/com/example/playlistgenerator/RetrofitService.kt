@@ -38,7 +38,7 @@ interface  RetrofitService {
     fun getUser(@Header("Authorization") auth: String): Call<User>
     @POST("users/{id}/playlists")
     fun createPlaylist(@Path("id") id: String, @Header("Authorization") auth: String,
-                     @Header("Content-Type") type: String, @Body playlist: PlaylistName): Call<Playlist>
+                     @Header("Content-Type") type: String, @Body createPlaylistBody: CreatePlaylistBody): Call<Playlist>
     @POST("playlists/{id}/tracks")
     fun addTrack(@Path("id") id: String, @Header("Authorization") auth: String,
                  @Header("Content-Type") type: String, @Body tracks: Tracks): Call<JSONObject>
@@ -46,6 +46,8 @@ interface  RetrofitService {
     @PUT("playlists/{id}/images")
     fun changeCover(@Path("id") id: String, @Header("Authorization") auth: String,
                     @Header("Content-Type") type: String, @Body img: String): Call<JSONObject>
+    @GET("playlists/{id}/images")
+    fun getCover(@Path("id") id: String, @Header("Authorization") auth: String): Deferred<Array<Image>>
 
     companion object {
         fun create(baseUrl: String): RetrofitService {

@@ -111,16 +111,7 @@ class HomeFragment : Fragment() {
                     intents.putExtras(b)
                     context?.startActivity(intents)
                 }
-                itemView.findViewById<ImageButton>(R.id.imageButton).setOnClickListener {
-                    //Intent to pick image
-                    val intent = Intent(Intent.ACTION_GET_CONTENT)
-                    intent.type = "image/*"
-                    startActivityForResult(intent, 1000)
 
-                    //We need to remember which playlist are we setting the image for, so when we get the image we know what to do with it
-                    targetPlaylist = playlistEntity.playlistId
-                    targetExternalPlaylist = playlistEntity.external_url
-                }
             }
 
         }

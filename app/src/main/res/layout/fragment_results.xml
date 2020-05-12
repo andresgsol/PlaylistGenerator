@@ -14,26 +14,28 @@
         android:gravity="center"
         android:text="@string/loading"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="invisible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <EditText
             android:id="@+id/editText"
             android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:autofillHints=""
-            android:ems="10"
+            android:ems="20"
             android:hint="@string/playlist_name"
             android:inputType="textPersonName"
             android:paddingBottom="10dp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/switch1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,6 +70,17 @@
             app:layout_constraintEnd_toStartOf="@+id/yay"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make public"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editText"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

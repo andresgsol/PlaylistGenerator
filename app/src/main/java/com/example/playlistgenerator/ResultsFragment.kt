@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -82,7 +79,7 @@ class ResultsFragment : Fragment() {
                     .setInputData(
                         workDataOf("access_token" to model?.access_token,
                             "name" to v.findViewById<EditText>(R.id.editText).text.toString(),
-                            "tracks" to strArray)
+                            "tracks" to strArray, "public" to v.findViewById<Switch>(R.id.switch1).isChecked)
                     ).build()
                 WorkManager.getInstance().enqueue(poster)
             }
@@ -128,7 +125,8 @@ class ResultsFragment : Fragment() {
                 if (info != null && info.state.isFinished) {
                     Log.d("poster result", info.toString())
                     model?.insertPlaylist(info.outputData.getString("name"),
-                        info.outputData.getString("uri"),info.outputData.getString("external_url"))
+                        info.outputData.getString("uri"),info.outputData.getString("external_url"),
+                        info.outputData.getString("cover"))
 
                     v.findViewById<TextView>(R.id.loading).visibility=View.INVISIBLE
                     v.findViewById<ConstraintLayout>(R.id.lay).visibility=View.VISIBLE

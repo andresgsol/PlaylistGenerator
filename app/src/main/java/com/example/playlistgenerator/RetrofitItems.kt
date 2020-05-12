@@ -75,3 +75,14 @@ data class Playlist (
 data class Tracks (
     var uris: Array<String>
 )
+
+data class Image (
+    var heigth: Int,
+    var width: Int,
+    var url: String
+)
+
+data class CreatePlaylistBody (
+    var name: String,
+    var public: Boolean
+)

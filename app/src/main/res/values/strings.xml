@@ -27,4 +27,5 @@
     <string name="name">name</string>
     <string name="artist">artist</string>
     <string name="log_in">LOG IN</string>
+    <string name="app_icon">app icon</string>
 </resources>

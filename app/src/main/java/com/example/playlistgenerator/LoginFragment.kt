@@ -35,7 +35,7 @@ class LoginFragment : Fragment() {
 
     fun login(activity: MainActivity): Int {
         val builder = AuthenticationRequest.Builder(resources.getString(R.string.client_ID), AuthenticationResponse.Type.TOKEN,redirectUri)
-        builder.setScopes(arrayOf("streaming","user-read-private","playlist-modify-public","user-read-email","ugc-image-upload"))
+        builder.setScopes(arrayOf("streaming","user-read-private","playlist-modify-public","user-read-email","ugc-image-upload","playlist-modify-private"))
         val request = builder.build()
         AuthenticationClient.openLoginActivity(activity,REQUEST_CODE,request)
         return 1

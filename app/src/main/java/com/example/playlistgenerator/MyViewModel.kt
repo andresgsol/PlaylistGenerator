@@ -29,23 +29,15 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
 
 
     fun insertPlaylist(name: String?, uri: String?, external_url: String?, image_uri: String?) = CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-        Log.d("insert", "$name, $uri, $external_url, $image_uri")
         if (name!=null && uri!=null && external_url!=null && image_uri!= null) {
             repository.insertPlaylist(PlaylistEntity(null, name, uri, external_url, image_uri))
         }
     }
 
 
-    fun updateImage(tid: Long, new_image_uri: String?) = CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
-        Log.d("update image", "$tid, $new_image_uri")
-        repository.updateImage(tid, new_image_uri)
-    }
-
-
 
     fun setAccessToken(token: String) {
         access_token = token
-        Log.d("access_token", access_token)
     }
 
 

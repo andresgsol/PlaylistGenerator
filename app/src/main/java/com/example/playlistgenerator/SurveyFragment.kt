@@ -82,7 +82,6 @@ class SurveyFragment : Fragment() {
                 .build()
             WorkManager.getInstance().enqueue(worker)
 
-            Log.d("parameters", num.toString() + genres.toString() + keywords.toString() + mood.toString())
 
             v?.findNavController()?.navigate(
                 R.id.action_surveyFragment_to_resultsFragment, bundleOf("workerID" to worker.id,

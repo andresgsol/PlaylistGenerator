@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PlaylistGenerator</string>
+    <string name="app_name">Playlist Generator</string>
 
     <string name="base_url">https://api.spotify.com/v1</string>
     <string name="number_of_songs">Number of songs</string>

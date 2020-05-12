@@ -34,7 +34,6 @@ class ResultsFragment : Fragment() {
         val genres = arguments?.getStringArray("genres")
         val keywords = arguments?.getStringArray("keywords")
         val mood = arguments?.getStringArray("mood")
-        Log.d("parameters", num.toString()+genres?.toList().toString()+keywords?.toList().toString()+mood?.toList().toString())
 
         val recyclerView = v.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -113,7 +112,6 @@ class ResultsFragment : Fragment() {
                     v.findViewById<TextView>(R.id.loading).visibility=View.INVISIBLE
                     v.findViewById<ConstraintLayout>(R.id.lay).visibility=View.VISIBLE
                 }
-                Log.d("workInfo", info.toString())
             })
     }
 
@@ -123,7 +121,6 @@ class ResultsFragment : Fragment() {
         WorkManager.getInstance().getWorkInfoByIdLiveData(uuid)
             .observe(viewLifecycleOwner, Observer { info ->
                 if (info != null && info.state.isFinished) {
-                    Log.d("poster result", info.toString())
                     model?.insertPlaylist(info.outputData.getString("name"),
                         info.outputData.getString("uri"),info.outputData.getString("external_url"),
                         info.outputData.getString("cover"))
@@ -166,10 +163,6 @@ class ResultsFragment : Fragment() {
 
         inner class PlaylistViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
             fun bindItems(trackItemVerySimplified: TrackItemVerySimplified) {
-                /*Glide.with(this@ListFragment)
-                    .load(resources.getString(R.string.picture_base_url) + movieItem.poster_path)
-                    .apply(RequestOptions().override(128, 128))
-                    .into(itemView.findViewById(R.id.poster))*/
                 itemView.findViewById<TextView>(R.id.name).text = trackItemVerySimplified.name
                 itemView.findViewById<TextView>(R.id.artist).text = trackItemVerySimplified.artists
             }

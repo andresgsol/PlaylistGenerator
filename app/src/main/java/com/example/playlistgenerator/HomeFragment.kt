@@ -116,29 +116,5 @@ class HomeFragment : Fragment() {
 
         }
     }
-    //handle result of picked image
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.d("HomeFragment", "onActivityResult")
-        if (resultCode == Activity.RESULT_OK && requestCode == 1000){
-            val imgUri = data?.data
-            targetPlaylist?.let { model?.updateImage(it, imgUri.toString()) }
-            //val imageStream = activity?.contentResolver?.openInputStream(imgUri!!)
-            //val bitmap = BitmapFactory.decodeStream(imageStream)
-            //val baos = ByteArrayOutputStream()
-            //bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-            //val b: ByteArray = baos.toByteArray()
-            //val imageEncoded: String = Base64.encodeToString(b, Base64.DEFAULT)
 
-            //THIS DOESN'T WORK THE SIZE OF imageEncoded IS TOO LARGE
-
-            /*
-            val updater = OneTimeWorkRequestBuilder<PlaylistImageUpdater>()
-                .setInputData(
-                    workDataOf("access_token" to model?.access_token,
-                        "id" to targetExternalPlaylist,
-                        "image" to imageEncoded)
-                ).build()
-            WorkManager.getInstance().enqueue(updater) */
-        }
-    }
 }

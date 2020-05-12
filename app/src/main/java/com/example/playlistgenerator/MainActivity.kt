@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.d("MainActivity", "onActivityResult")
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1337) {
             val response: AuthenticationResponse = AuthenticationClient.getResponse(resultCode,data)

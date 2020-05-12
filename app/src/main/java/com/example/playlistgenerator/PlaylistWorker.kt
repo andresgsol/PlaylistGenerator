@@ -44,7 +44,6 @@ class PlaylistWorker(appContext: Context, workerParams: WorkerParameters)
                 }
                 seedGenres = lines.shuffled().take(5).joinToString(separator = ",")
             }
-            Log.d("seedGenres", seedGenres)
 
 
             val target_energy = mood[0]
@@ -81,7 +80,6 @@ class PlaylistWorker(appContext: Context, workerParams: WorkerParameters)
 
 
             val res = request.await()
-            Log.d("result", res.toString())
 
             val tracks: Array<TrackItemSimplified> = res.tracks
             val tracksString = mutableListOf<String>()

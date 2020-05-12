@@ -24,8 +24,9 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_login, container, false)
-        val model = activity?.let { ViewModelProviders.of(it).get(MyViewModel::class.java)}
-        (v.findViewById(R.id.button) as Button).setOnClickListener { login(activity as MainActivity) }
+        (v.findViewById(R.id.button) as Button).setOnClickListener {
+            login(activity as MainActivity)
+        }
         return v
     }
 
